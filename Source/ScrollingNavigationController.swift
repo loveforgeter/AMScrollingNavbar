@@ -375,7 +375,8 @@ open class ScrollingNavigationController: UINavigationController, UIGestureRecog
     // Change the alpha channel of every item on the navbr
     let alpha = (frame.origin.y + deltaLimit) / frame.size.height
     
-    let excludes = ["_UINavigationBarBackground", "_UIBarBackground"]
+    navigationBar.tintColor = navigationBar.tintColor.withAlphaComponent(alpha)
+    let excludes = ["_UINavigationBarBackground", "_UIBarBackground", "_UINavigationBarBackIndicatorView"]
     navigationBar.subviews.filter { !excludes.contains($0.classForCoder.description()) }
       .forEach { $0.alpha = alpha }
   }
